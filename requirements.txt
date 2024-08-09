@@ -1,0 +1,15 @@
+streamlit
+joblib
+pandas
+numpy
+streamlit_option_menu
+streamlit_image_select 
+plotly
+scikit-learn
+requests
+urllib3
+pillow
+bs4
+scipy
+matplotlib
+seaborn
