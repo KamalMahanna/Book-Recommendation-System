@@ -13,8 +13,9 @@ import {
 } from '@chakra-ui/react';
 import { StarIcon } from '@chakra-ui/icons';
 import { motion } from 'framer-motion';
-import axios from 'axios';
 import LoadingSpinner from './LoadingSpinner';
+import { searchBooks, getCorrelationRecommendations, getContentBasedRecommendations } from '../services/bookService';
+import bookPlaceholder from '../assets/book-placeholder.png';
 import BookCarousel from './BookCarousel';
 
 const MotionBox = motion(Box);
@@ -33,29 +34,22 @@ function BookDetails() {
   useEffect(() => {
     window.scrollTo(0, 0);
     setIsLoading(true);
+    setBook(null); // Reset book state to trigger animation
     
     const fetchData = async () => {
-      // Add slight delay to ensure smooth transition
-      await new Promise(resolve => setTimeout(resolve, 300));
       try {
         // Search for the book details
-        const searchResponse = await axios.get(`http://localhost:8000/api/search?query=${isbn}&limit=1`);
-        if (searchResponse.data.length > 0) {
-          setBook(searchResponse.data[0]);
+        const bookResults = searchBooks(isbn, 1);
+        if (bookResults.length > 0) {
+          setBook(bookResults[0]);
           
-          // Fetch recommendations
-          const [correlationResponse, contentResponse] = await Promise.all([
-            axios.get(`http://localhost:8000/api/correlation/${isbn}`),
-            axios.get(`http://localhost:8000/api/content/${isbn}`)
-          ]);
-          
-          setCorrelationBooks(correlationResponse.data);
-          setContentBooks(contentResponse.data);
+          // Get recommendations
+          setCorrelationBooks(getCorrelationRecommendations(isbn, 10));
+          setContentBooks(getContentBasedRecommendations(isbn, 10));
         }
-        
-        setIsLoading(false);
       } catch (error) {
-        console.error('Error fetching book details:', error);
+        console.error('Error loading book details:', error);
+      } finally {
         setIsLoading(false);
       }
     };
@@ -79,12 +73,13 @@ function BookDetails() {
 
   return (
     <CSSTransition
-      in={true}
+      in={!isLoading && book !== null}
       appear={true}
       timeout={600}
       classNames="book-details"
       nodeRef={nodeRef}
       unmountOnExit
+      key={isbn} // Add key to force remount on ISBN change
     >
       <Box ref={nodeRef} as="main">
         {/* Hero Section */}
@@ -106,7 +101,7 @@ function BookDetails() {
           left: 0,
           right: 0,
           bottom: 0,
-          bg: location.pathname==='/' ? 'linear-gradient(to bottom, rgba(20,20,20,0) 0%, rgba(20,20,20,0.4) 70%, rgba(20,20,20,0.8) 100%)' : 'none',
+          bg: 'linear-gradient(to bottom, rgba(20,20,20,0) 0%, rgba(20,20,20,0.4) 70%, rgba(20,20,20,0.8) 100%)',
           pointerEvents: 'none',
           zIndex: 0,
         }}
@@ -118,7 +113,7 @@ function BookDetails() {
             display="flex"
             alignItems="flex-end"
             pb={20}
-          zIndex={location.pathname==='/' ? 1 : 2}
+          zIndex={1}
           >
             <HStack spacing={8} align="flex-start">
               {/* Book Cover */}
@@ -139,7 +134,7 @@ function BookDetails() {
                   height="400px"
                   objectFit="cover"
                   borderRadius="md"
-                  fallbackSrc="https://via.placeholder.com/300x450/141414/FFFFFF?text=No+Cover"
+                  fallbackSrc={bookPlaceholder}
                   initial={{ }}
                   whileHover={{ filter: 'brightness(1)' }}
                   transition={{ duration: 0.3 }}

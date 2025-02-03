@@ -15,7 +15,7 @@ import {
 } from '@chakra-ui/react';
 import { SearchIcon, CloseIcon } from '@chakra-ui/icons';
 import { Link as RouterLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import bookService from '../services/bookService';
 
 function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -55,18 +55,10 @@ function Navbar() {
 
   // Debounced search function
   useEffect(() => {
-    const timer = setTimeout(async () => {
+    const timer = setTimeout(() => {
       if (searchQuery) {
-        try {
-          const response = await axios.get(`http://localhost:8000/api/search?query=${searchQuery}`);
-          // Parse the response text as JSON if needed
-          const results = typeof response.data === 'string' 
-            ? JSON.parse(`[${response.data.replace(/}{/g, '},{')}]`)
-            : response.data;
-          setSearchResults(results);
-        } catch (error) {
-          console.error('Search error:', error);
-        }
+        const results = bookService.searchBooks(searchQuery);
+        setSearchResults(results);
       } else {
         setSearchResults([]);
       }
@@ -108,66 +100,56 @@ function Navbar() {
               </HStack>
             </HStack>
 
-            {/* Search Input */}
-            <Flex align="center" flex={1} justify="flex-end" mr={2} position="relative" ref={searchContainerRef}>
+            {/* Integrated Search Component */}
+            <Flex flex={1} position="relative" ref={searchContainerRef} justify="flex-end" align="center">
               <Box
-                className={`navbar-search ${isSearchVisible ? 'open' : ''}`}
-                w={isSearchVisible ? "400px" : "0"}
-                transition="width 0.3s ease"
+                w={isSearchVisible ? "400px" : "40px"}
+                transition="all 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+                position="relative"
                 overflow="hidden"
               >
-                <InputGroup>
-                  <Input
-                    placeholder="Search for books..."
-                    size="md"
-                    variant="filled"
-                    bg="rgba(255,255,255,0.1)"
-                    border="none"
-                    _focus={{
-                      bg: "rgba(255,255,255,0.15)",
-                      borderColor: "brand.100"
-                    }}
-                    _hover={{
-                      bg: "rgba(255,255,255,0.15)"
-                    }}
-                    value={searchQuery}
-                    onChange={(e) => setSearchQuery(e.target.value)}
-                    pr="2.5rem"
-                    onMouseDown={(e) => e.stopPropagation()}
-                  />
-                  {isSearchVisible && (
+                  <InputGroup size="md">
+                    <Input
+                      placeholder="Search for books..."
+                      variant="filled"
+                      bg="rgba(255,255,255,0.1)"
+                      border="none"
+                      opacity={isSearchVisible ? 1 : 0}
+                      transition="opacity 0.3s ease"
+                      _focus={{
+                        bg: "rgba(255,255,255,0.15)",
+                        borderColor: "brand.100"
+                      }}
+                      _hover={{
+                        bg: "rgba(255,255,255,0.15)"
+                      }}
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      pl={isSearchVisible ? "1rem" : "2.5rem"}
+                      pr="2.5rem"
+                      onMouseDown={(e) => e.stopPropagation()}
+                    />
                     <InputRightElement>
                       <IconButton
-                        icon={<CloseIcon boxSize={3} />}
+                        icon={isSearchVisible ? <CloseIcon boxSize={3} /> : <SearchIcon boxSize={5} />}
                         variant="ghost"
-                        size="sm"
+                        size={isSearchVisible ? "sm" : "md"}
                         onClick={(e) => {
                           e.stopPropagation();
-                          setIsSearchVisible(false);
-                          setSearchQuery('');
-                          setSearchResults([]);
+                          if (isSearchVisible) {
+                            setSearchQuery('');
+                            setSearchResults([]);
+                          }
+                          setIsSearchVisible(!isSearchVisible);
                         }}
-                        aria-label="Close search"
-                        color="gray.400"
+                        aria-label={isSearchVisible ? "Close search" : "Open search"}
+                        color={isSearchVisible ? "gray.400" : "white"}
                         _hover={{ color: 'brand.100' }}
+                        transition="all 0.3s ease"
                       />
                     </InputRightElement>
-                  )}
-                </InputGroup>
+                  </InputGroup>
               </Box>
-              {!isSearchVisible && (
-                <IconButton
-                  icon={<SearchIcon boxSize={5} />}
-                  variant="ghost"
-                  onMouseDown={(e) => {
-                    e.stopPropagation();
-                    setIsSearchVisible(true);
-                  }}
-                  aria-label="Search"
-                  _hover={{ color: 'brand.100' }}
-                  size="md"
-                />
-              )}
 
               {/* Search Results Dropdown */}
               {searchQuery && (

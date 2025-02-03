@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { CSSTransition } from 'react-transition-group';
 import { StarIcon, ChevronRightIcon } from '@chakra-ui/icons';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import bookService from '../services/bookService';
 import BookCarousel from './BookCarousel';
 import LoadingSpinner from './LoadingSpinner';
 
@@ -21,13 +21,13 @@ function Home() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const popularResponse = await axios.get('http://localhost:8000/api/popular?top=20');
-        setPopularBooks(popularResponse.data);
+        const popularBooksData = bookService.getPopularBooks(20);
+        setPopularBooks(popularBooksData);
         
         // Set a random popular book as featured
-        if (popularResponse.data.length > 0) {
-          const randomIndex = Math.floor(Math.random() * Math.min(5, popularResponse.data.length));
-          setFeaturedBook(popularResponse.data[randomIndex]);
+        if (popularBooksData.length > 0) {
+          const randomIndex = Math.floor(Math.random() * Math.min(5, popularBooksData.length));
+          setFeaturedBook(popularBooksData[randomIndex]);
         }
         
         setIsLoading(false);
@@ -188,8 +188,8 @@ function CorrelationCarousel({ isbn }) {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/correlation/${isbn}`);
-        setBooks(response.data);
+        const recommendations = bookService.getCorrelationRecommendations(isbn);
+        setBooks(recommendations);
       } catch (error) {
         console.error('Error fetching correlation recommendations:', error);
       }
@@ -214,8 +214,8 @@ function ContentBasedCarousel({ isbn }) {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await axios.get(`http://localhost:8000/api/content/${isbn}`);
-        setBooks(response.data);
+        const recommendations = bookService.getContentBasedRecommendations(isbn);
+        setBooks(recommendations);
       } catch (error) {
         console.error('Error fetching content-based recommendations:', error);
       }
