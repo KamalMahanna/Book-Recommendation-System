@@ -1,0 +1,464 @@
+/* Global layout */
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #141414;
+  color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 3rem;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.8) 0%,
+    rgba(20, 20, 20, 0.6) 60%,
+    rgba(20, 20, 20, 0.8) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Book Cards */
+.book-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-card:hover .book-info {
+  opacity: 1;
+}
+
+/* Carousel Section */
+.carousel-section {
+  margin-bottom: 3rem;
+  padding: 1rem 0;
+}
+
+.carousel-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding-left: 4%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Target Chakra UI's specific section title class */
+.carousel-section:hover .css-10qtt78 {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+  z-index: 0; /* Ensure title stays behind cards */
+}
+
+/* Add hover containment for parent section */
+.carousel-section {
+  position: relative;
+}
+
+.carousel-section:hover {
+  z-index: 1;
+}
+/* Global layout */
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #141414;
+  color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 3rem;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.8) 0%,
+    rgba(20, 20, 20, 0.6) 60%,
+    rgba(20, 20, 20, 0.8) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Book Cards */
+.book-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-card:hover .book-info {
+  opacity: 1;
+}
+
+/* Carousel Section */
+.carousel-section {
+  margin-bottom: 3rem;
+  padding: 1rem 0;
+}
+
+.carousel-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding-left: 4%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-section:hover .section-title {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  transform: translateY(-10px);
+}
+
+.book-card {
+  position: relative;
+  z-index: 1;
+}
+
+.book-card:hover {
+  z-index: 2;
+}
+/* Global layout */
+html {
+  scroll-behavior: smooth;
+}
+
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #141414;
+  color: #fff;
+}
+
+/* Hero Section */
+.hero-section {
+  position: relative;
+  height: 80vh;
+  background-size: cover;
+  background-position: center;
+  margin-bottom: 3rem;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 20, 20, 0.8) 0%,
+    rgba(20, 20, 20, 0.6) 60%,
+    rgba(20, 20, 20, 0.8) 100%
+  );
+}
+
+.hero-content {
+  position: relative;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: 2rem;
+}
+
+/* Book Cards */
+.book-card {
+  position: relative;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  z-index: 2;
+}
+
+.book-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
+
+.book-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1rem;
+  background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.book-card:hover .book-info {
+  opacity: 1;
+}
+
+/* Carousel Section */
+.carousel-section {
+  margin-bottom: 3rem;
+  padding: 1rem 0;
+}
+
+.carousel-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  padding-left: 4%;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+.carousel-section:hover .carousel-title {
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Glass Card Effect */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  transition: all 0.3s ease !important;
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+  transform: translateY(-2px) !important;
+}
+
+/* Page Transitions */
+.page-transition {
+  animation: fadeIn 0.8s ease-out;
+  opacity: 0;
+  animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+    filter: blur(10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* Book Details Transition */
+.book-details-enter {
+  opacity: 0;
+  transform: scale(0.96);
+  filter: blur(8px);
+}
+
+.book-details-enter-active {
+  opacity: 1;
+  transform: scale(1);
+  filter: blur(0);
+  transition: all 0.6s ease-out;
+}
+
+.book-details-exit {
+  opacity: 1;
+}
+
+.book-details-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s ease-in;
+}
+
+/* Navbar styling */
+.navbar-container {
+  background: linear-gradient(to bottom, rgba(0,0,0,0.75) 10%, transparent);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  transition: all 0.3s ease;
+}
+
+.navbar-container.scrolled {
+  background-color: #141414;
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Navbar Search */
+.navbar-search {
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.navbar-search.open {
+  opacity: 1;
+}
+
+/* Search Results Animation */
+.search-result-item {
+  animation: slideIn 0.3s ease forwards;
+  opacity: 0;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Stagger animation for search results */
+.search-result-item:nth-child(1) { animation-delay: 0.1s; }
+.search-result-item:nth-child(2) { animation-delay: 0.15s; }
+.search-result-item:nth-child(3) { animation-delay: 0.2s; }
+.search-result-item:nth-child(4) { animation-delay: 0.25s; }
+.search-result-item:nth-child(5) { animation-delay: 0.3s; }
+.search-result-item:nth-child(n+6) { animation-delay: 0.35s; }
+
+/* Scrollbar styling for search results */
+.search-result-item::-webkit-scrollbar {
+  width: 8px;
+}
+
+.search-result-item::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+}
+
+.search-result-item::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+}
+
+.search-result-item::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+/* Loading Animation */
+.loading-spinner {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #141414;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .hero-section {
+    height: 60vh;
+  }
+  
+  .book-card:hover {
+    transform: scale(1.02);
+  }
+}
