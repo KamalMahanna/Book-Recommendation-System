@@ -4,18 +4,27 @@
   <meta charset="utf-8">
   <title>Redirecting...</title>
   <script>
-    // Store the full path including the hash
-    var pathSegments = window.location.pathname.split('/');
+    // Get the current path
+    var location = window.location;
+    var pathName = location.pathname;
     var repoName = 'Book-Recommendation-System';
     
-    // Find where in the path our repo name is, if it exists
-    var repoIndex = pathSegments.indexOf(repoName);
-    
-    // Reconstruct the path properly
-    var path = pathSegments.slice(repoIndex !== -1 ? repoIndex + 1 : 1).join('/');
-    
-    // Redirect to the correct URL
-    window.location.href = '/' + repoName + '/#/' + path;
+    // Always ensure we have the repo name in the path
+    if (!pathName.includes(repoName)) {
+        // If we're at root or the path doesn't include the repo name, 
+        // redirect to the repo root
+        if (pathName === '/' || pathName === '') {
+            window.location.href = '/' + repoName;
+        } else {
+            // If we have a path but no repo name, add it
+            window.location.href = '/' + repoName + pathName;
+        }
+    } else {
+        // The path includes the repo name, redirect with hash
+        var path = pathName.split(repoName)[1] || '';
+        if (path.startsWith('/')) path = path.substring(1);
+        window.location.href = '/' + repoName + '/#/' + path;
+    }
   </script>
 </head>
 <body>

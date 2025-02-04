@@ -6,16 +6,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Book Recommendations</title>
     <script>
-      // Redirect to the correct route if coming from 404.html
       (function() {
         var redirect = window.location.hash;
+        var repoName = 'Book-Recommendation-System';
+        
         if (redirect && redirect.includes('/#/')) {
           // Get the path after /#/
           var path = redirect.split('/#/')[1];
-          // Create the correct path with the repo name
-          var newPath = '/Book-Recommendation-System/' + path;
-          // Update the URL
+          
+          // Ensure we have the repo name and the path
+          var newPath = '/' + repoName + '/' + path;
+          
+          // Update the URL while preserving the repo name
           window.history.replaceState(null, null, newPath);
+        } else if (!window.location.pathname.includes(repoName)) {
+          // If we're at the root and missing the repo name, add it
+          window.history.replaceState(null, null, '/' + repoName + window.location.pathname);
         }
       })();
     </script>
