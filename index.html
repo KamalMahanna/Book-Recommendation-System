@@ -9,9 +9,13 @@
       // Redirect to the correct route if coming from 404.html
       (function() {
         var redirect = window.location.hash;
-        if (redirect) {
-          // Remove the # and redirect to the actual route
-          history.replaceState(null, null, redirect.slice(1));
+        if (redirect && redirect.includes('/#/')) {
+          // Get the path after /#/
+          var path = redirect.split('/#/')[1];
+          // Create the correct path with the repo name
+          var newPath = '/Book-Recommendation-System/' + path;
+          // Update the URL
+          window.history.replaceState(null, null, newPath);
         }
       })();
     </script>
