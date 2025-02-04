@@ -1,8 +1,0 @@
-fastapi
-uvicorn
-pandas
-python-multipart
-joblib
-pillow
-python-dotenv
-cors
