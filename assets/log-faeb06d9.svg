@@ -1,0 +1,19 @@
+<svg width="120" height="120" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+    <!-- Main Book Shape -->
+    <path d="M20 60 Q 40 80 60 60 Q 80 40 100 60" fill="#FF3737" stroke="#FF3737" stroke-width="2"/>
+    
+    <!-- Book Cover Effect -->
+    <rect x="30" y="30" width="60" height="60" fill="#FFC080" rx="10"/>
+    
+    <!-- Page Turn Effect -->
+    <path d="M60 30 Q 80 50 60 70" fill="none" stroke="#FF3737" stroke-width="2" opacity="0.8"/>
+    
+    <!-- Book Spine Effect -->
+    <path d="M20 60 Q 40 80 60 60 Q 80 40 100 60" fill="none" stroke="#FF3737" stroke-width="1.5" opacity="0.3"/>
+    
+    <!-- Play Button Integration -->
+    <path d="M50 80 L70 80 L60 95 Z" fill="#fff" stroke="#FF3737" stroke-width="2"/>
+    
+    <!-- Shadow Effect -->
+    <path d="M20 60 Q 40 80 60 60 Q 80 40 100 60" fill="none" stroke="#000" stroke-width="1" opacity="0.1"/>
+  </svg>
