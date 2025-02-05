@@ -2,3 +2,12 @@ notebooks/testing.ipynb
 book_rec_env
 utils/__pycache__
 scripts/test_app.py
+__pycache__/
+*.pyc
+*.ipynb_checkpoints/
+*.csv.gz
+*.joblib.z
+Charts/
+public/
+node_modules
+dist
