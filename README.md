@@ -11,7 +11,8 @@ This Book Recommendation System is a project designed to showcase the developmen
 - **Live Demonstrations:** The project features live demos accessible through two hosted websites:
     - **Cline-Made Website:** [https://kamalmahanna.github.io/Book-Recommendation-System/](https://kamalmahanna.github.io/Book-Recommendation-System/)
     - **Streamlit Hosted Website:** [https://book-recommender-k.streamlit.app/](https://book-recommender-k.streamlit.app/)
-    These demos provide interactive experiences showcasing the system's capabilities and user interface.
+    
+   These demos provide interactive experiences showcasing the system's capabilities and user interface.
 
 ## Technical Details
 
