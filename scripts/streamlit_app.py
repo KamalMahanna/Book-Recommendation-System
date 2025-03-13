@@ -194,3 +194,59 @@ if selected == "Home":
 
 elif selected == "About":
     st.title("Insights")
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    charts_dir = os.path.join(script_dir, "..", "Charts")
+
+    # Function to embed HTML charts
+    def embed_chart(filename, description):
+        st.write(f"**{description}**")
+        with open(os.path.join(charts_dir, filename), "r", encoding="utf-8") as f:
+            html_string = f.read()
+        components.html(html_string, height=500, scrolling=True)
+
+    # Embed charts in a specific order with descriptions
+    embed_chart(
+        "famous_books.html",
+        "Most Famous Books: This chart highlights the books that are most widely recognized and appreciated within the dataset. It ranks books based on a combination of their average rating and the total number of ratings received. Books appearing higher on this chart are not only rated favorably on average but also have been rated by a significant number of users, indicating broad appeal and recognition.",
+    )
+    embed_chart(
+        "year_when_most_books.html",
+        "Year When Most Books Were Published: This visualization shows the distribution of book publication years and pinpoints the year in which the largest number of books in our dataset were published. This can reflect trends in the publishing industry, highlight periods of significant literary output, or potentially indicate biases in our data collection if certain periods are over-represented.",
+    )
+    embed_chart(
+        "centuries_with_most_books.html",
+        "Centuries With Most Books: To understand longer-term trends in book publishing, this chart aggregates publication years by century. By looking at centuries instead of individual years, we smooth out year-to-year variations and reveal broader historical patterns in when books were published. This helps identify centuries that were particularly prolific in terms of book production in our dataset.",
+    )
+    embed_chart(
+        "authoer_with_most_books.html",
+        "Author With Most Books: This chart identifies the authors who have the largest number of books listed in our dataset. It showcases the most prolific writers contributing to this collection, giving insights into authorship trends and highlighting authors with extensive bodies of work represented.",
+    )
+    embed_chart(
+        "Publisher_with_most_books.html",
+        "Publisher With Most Books: Understanding the publishing landscape is crucial. This chart displays the publishers who have released the highest number of books in the dataset. It helps identify major publishing houses and their relative contribution to the collection, offering a view of the key players in the book publishing industry represented in our data.",
+    )
+    embed_chart(
+        "age_group_reading_books.html",
+        "Age Group Reading Books: To understand reader demographics, this chart visualizes the distribution of readers across different age groups. It reveals which age segments are most active in reading and rating books within our dataset, providing valuable demographic insights for targeted recommendations or marketing.",
+    )
+    embed_chart(
+        "users_from_different_country.html",
+        "Users From Different Countries: This chart illustrates the geographical distribution of users contributing to the dataset. By showing the number of users from different countries, we gain insights into the global reach and diversity of the user base for this book rating system.",
+    )
+    embed_chart(
+        "user_id_with_given_ratings.html",
+        "User ID With Given Ratings: This visualization explores user rating behavior by showing the distribution of the number of ratings given by each user ID. It can help identify users who are highly active raters or those who contribute more extensively to the rating data, potentially highlighting power users or different rating patterns.",
+    )
+    embed_chart(
+        "most_given_ratings.html",
+        "Most Given Ratings: Analyzing the distribution of rating values themselves can reveal overall sentiment trends. This chart shows the frequency of each rating score given by users. It helps understand the general distribution of opinions – whether ratings tend to be positive, negative, or neutral on average within the dataset.",
+    )
+    embed_chart(
+        "null_year_before_scrapping.html",
+        "Null Year Before Scrapping: In data quality assessment, it's important to understand missing data. This chart quantifies the number of books that had missing publication year information *before* our data cleaning or scraping processes. It serves as a baseline measure of data completeness for publication years.",
+    )
+    embed_chart(
+        "null_year_after_scrapping.html",
+        "Null Year After Scrapping: Following data cleaning efforts, this chart shows the number of books with missing publication years *after* the cleaning or scraping stage. By comparing this to the 'Null Year Before Scrapping' chart, we can evaluate the effectiveness of our data cleaning in improving the completeness of publication year data.",
+    )
